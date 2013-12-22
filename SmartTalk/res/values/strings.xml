@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmartTalk</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello">Pozdravljeni!</string>
+    <string name="prijava">Prijavite se v sistem</string>
+    <string name="Reg">Registrirajte se v sistem</string>
+    <string name="naStart">Nazaj na začetni meni</string>
+    <string name="Izhod">Zapri aplikacijo</string>
+    <string name="uporabniskoIme">Uporabniško ime</string>
+    <string name="uporabniskoGeslo">Uporabniško geslo</string>
+    <string name="prijavaUp">Prijava uporabnika</string>
+    <string name="naZemljevid">Pojdi na zemljevid</string>
+    <string name="samski">Samski</string>
+    <string name="zenske">Ženske</string>
+    <string name="moski">Moški</string>
+    <string name="ZacetnaLokacija">Začetna pozicija</string>
+    <string name="Vsi">Vsi uporabniki</string>
+</resources>
