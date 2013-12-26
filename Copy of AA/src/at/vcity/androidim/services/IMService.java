@@ -39,7 +39,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import at.vcity.androidim.Login;
+import at.vcity.androidim.PrijaviSe;
 import at.vcity.androidim.Messaging;
 import at.vcity.androidim.R;
 import at.vcity.androidim.communication.SocketOperator;
@@ -83,6 +83,8 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	private final IBinder mBinder = new IMBinder();
 	private String username;
 	private String password;
+	private Double longitude;
+	private Double latitude;
 	private boolean authenticatedUser = false;
 	 // timer to take the updated data from server
 	private Timer timer;
@@ -254,7 +256,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		this.authenticatedUser = false;
 		
 		String result = this.getFriendList(); //socketOperator.sendHttpRequest(getAuthenticateUserParams(username, password));
-		if (result != null && !result.equals(Login.AUTHENTICATION_FAILED)) 
+		if (result != null && !result.equals(PrijaviSe.AUTHENTICATION_FAILED)) 
 		{			
 			// if user is authenticated then return string from server is not equal to AUTHENTICATION_FAILED
 			this.authenticatedUser = true;
@@ -366,12 +368,13 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	}
 	
 	public String signUpUser(String usernameText, String passwordText,
-			String emailText) 
+			String emailText, String spolText) 
 	{
 		String params = "username=" + usernameText +
 						"&password=" + passwordText +
 						"&action=" + "signUpUser"+
 						"&email=" + emailText+
+						"&spol=" + spolText +
 						"&";
 		
 		String result = socketOperator.sendHttpRequest(params);		
@@ -391,6 +394,19 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		
 		return result;
 	}
+	@Override
+	public String setLongLat(String username, Double latitude,Double longitude) {
+		String params ="username" + username  + 
+				"&GPSx=" + latitude + 
+				"&GPSy="+ longitude +
+				"&";
+
+		String result = socketOperator.sendHttpRequest(params);		
+
+		return result;
+	}
+
+
 
 	public String sendFriendsReqsResponse(String approvedFriendNames,
 			String discardedFriendNames) 
@@ -463,7 +479,6 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		FriendController.setUnapprovedFriendsInfo(unApprovedFriends);
 		
 	}
-
 
 	
 	

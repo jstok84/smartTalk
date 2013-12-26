@@ -1,6 +1,7 @@
 package at.vcity.androidim;
 
 import android.app.ListActivity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -35,6 +36,7 @@ import at.vcity.androidim.types.STATUS;
 public class FriendList extends ListActivity 
 {
 	private static final int ADD_NEW_FRIEND_ID = Menu.FIRST;
+	//private static final int SET_NEW_FRIEND_ID = Menu.FIRST + 1;
 	private static final int EXIT_APP_ID = Menu.FIRST + 1;
 	private IAppManager imService = null;
 	private FriendListAdapter friendAdapter;
@@ -199,9 +201,9 @@ public class FriendList extends ListActivity
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 		    	.setSmallIcon(R.drawable.stat_sample)
 		    	.setContentTitle(getText(R.string.new_friend_request_exist));
-				/*Notification notification = new Notification(R.drawable.stat_sample, 
+				Notification notification = new Notification(R.drawable.stat_sample, 
 						getText(R.string.new_friend_request_exist),
-						System.currentTimeMillis());*/
+						System.currentTimeMillis());
 
 				Intent i = new Intent(this, UnApprovedFriendList.class);
 				i.putExtra(FriendInfo.FRIEND_LIST, tmp);				
@@ -210,9 +212,9 @@ public class FriendList extends ListActivity
 						i, 0);
 
 				mBuilder.setContentText("You have new friend request(s)");
-				/*notification.setLatestEventInfo(this, getText(R.string.new_friend_request_exist),
+				notification.setLatestEventInfo(this, getText(R.string.new_friend_request_exist),
 												"You have new friend request(s)", 
-												contentIntent);*/
+												contentIntent);
 				
 				mBuilder.setContentIntent(contentIntent);
 
@@ -274,6 +276,8 @@ public class FriendList extends ListActivity
 
 		menu.add(0, ADD_NEW_FRIEND_ID, 0, R.string.add_new_friend);
 		
+		//menu.add(0, SET_NEW_FRIEND_ID, 0, R.string.set_new_friend);
+
 		menu.add(0, EXIT_APP_ID, 0, R.string.exit_application);		
 		
 		return result;
@@ -296,7 +300,8 @@ public class FriendList extends ListActivity
 				imService.exit();
 				finish();
 				return true;
-			}			
+			}	
+			
 		}
 
 		return super.onMenuItemSelected(featureId, item);		
