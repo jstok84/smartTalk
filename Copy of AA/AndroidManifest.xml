@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="at.vcity.androidim"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    android:debuggable="true" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
@@ -89,7 +90,7 @@
 </activity>
          <meta-data
    		   	  android:name="com.google.android.maps.v2.API_KEY"
-    		  android:value="AIzaSyC4wXLGM-NFXP-0T7swOXnF1QSJT-F-X5o"/>
+    		  android:value="AIzaSyAScVrIXxWq7oSbVunzRXQx0B0SqS2qu6U"/>
         
 </application>
 

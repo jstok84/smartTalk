@@ -368,13 +368,15 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	}
 	
 	public String signUpUser(String usernameText, String passwordText,
-			String emailText, String spolText) 
+			String emailText, String spolText, String latitude, String longitude) 
 	{
 		String params = "username=" + usernameText +
 						"&password=" + passwordText +
 						"&action=" + "signUpUser"+
 						"&email=" + emailText+
 						"&spol=" + spolText +
+						"&GPSx=" + latitude+
+						"&GPSy=" + longitude +
 						"&";
 		
 		String result = socketOperator.sendHttpRequest(params);		
@@ -395,16 +397,33 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		return result;
 	}
 	@Override
-	public String setLongLat(String username, Double latitude,Double longitude) {
-		String params ="username" + username  + 
-				"&GPSx=" + latitude + 
-				"&GPSy="+ longitude +
-				"&";
-
+	public String setLongLat(String usernameText, String passwordText,
+			String latitude, String longitude) 
+	{
+		String params = "username=" + usernameText +
+						"&password=" + passwordText +
+						"&action=" + "setLongLat"+
+						"&GPSx=" + latitude+
+						"&GPSy=" + longitude +
+						"&";
+		
 		String result = socketOperator.sendHttpRequest(params);		
-
+		
 		return result;
 	}
+	
+	@Override
+	public String SelectAllUsers(String usernameText, String passwordText)
+		{
+			String params = "username=" + usernameText +
+							"&password=" + passwordText +
+							"&action=" + "selectAllUsers"+
+							"&";
+			
+			String result = socketOperator.sendHttpRequest(params);		
+			
+			return result;
+		}
 
 
 
