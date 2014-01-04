@@ -64,7 +64,7 @@ int drawable stat_sample 0x7f020020
 int id ButtonIzhod 0x7f05000d
 int id ButtonNaZemljevid 0x7f050007
 int id ButtonPrijava 0x7f05000c
-int id Samski 0x7f050023
+int id Samski 0x7f050025
 int id Vsi 0x7f050022
 int id ZacetnaLokacija 0x7f050021
 int id addFriend 0x7f050010
@@ -79,7 +79,7 @@ int id login 0x7f050016
 int id map 0x7f050005
 int id message 0x7f050019
 int id messageHistory 0x7f050018
-int id moski 0x7f050025
+int id moski 0x7f050024
 int id nazaj 0x7f050008
 int id newFriendUsername 0x7f05000f
 int id none 0x7f050000
@@ -98,7 +98,7 @@ int id text 0x7f050013
 int id text1 0x7f05001b
 int id textView1 0x7f05000b
 int id userName 0x7f05000a
-int id zenske 0x7f050024
+int id zenske 0x7f050023
 int integer google_play_services_version 0x7f070000
 int layout activity_map 0x7f030000
 int layout activity_maps 0x7f030001

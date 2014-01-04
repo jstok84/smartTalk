@@ -211,7 +211,7 @@ containing a value of this type.
         public static final int ButtonIzhod=0x7f05000d;
         public static final int ButtonNaZemljevid=0x7f050007;
         public static final int ButtonPrijava=0x7f05000c;
-        public static final int Samski=0x7f050023;
+        public static final int Samski=0x7f050025;
         public static final int Vsi=0x7f050022;
         public static final int ZacetnaLokacija=0x7f050021;
         public static final int addFriend=0x7f050010;
@@ -226,7 +226,7 @@ containing a value of this type.
         public static final int map=0x7f050005;
         public static final int message=0x7f050019;
         public static final int messageHistory=0x7f050018;
-        public static final int moski=0x7f050025;
+        public static final int moski=0x7f050024;
         public static final int nazaj=0x7f050008;
         public static final int newFriendUsername=0x7f05000f;
         public static final int none=0x7f050000;
@@ -245,7 +245,7 @@ containing a value of this type.
         public static final int text1=0x7f05001b;
         public static final int textView1=0x7f05000b;
         public static final int userName=0x7f05000a;
-        public static final int zenske=0x7f050024;
+        public static final int zenske=0x7f050023;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;

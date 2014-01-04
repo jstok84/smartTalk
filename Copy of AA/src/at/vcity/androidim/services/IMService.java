@@ -34,6 +34,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.IBinder;
@@ -166,29 +167,28 @@ public class IMService extends Service implements IAppManager, IUpdateData {
     private void showNotification(String username, String msg) 
 	{       
         // Set the icon, scrolling text and TIMESTAMP
-    	String title = "AndroidIM: You got a new Message! (" + username + ")";
+    	String title = "SmartTalk: You got a new Message! (" + username + ")";
  				
     	String text = username + ": " + 
      				((msg.length() < 5) ? msg : msg.substring(0, 5)+ "...");
-    	
+    	Log.i("NOTIFICATION lOG", username+"user "+msg+" message");
     	//NotificationCompat.Builder notification = new NotificationCompat.Builder(R.drawable.stat_sample, title,System.currentTimeMillis());
     	NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
     	.setSmallIcon(R.drawable.stat_sample)
     	.setContentTitle(title)
+    	.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
     	.setContentText(text); 
     	
-    	
 
-        Intent i = new Intent(this, Messaging.class);
+        Intent i = new Intent(getApplicationContext(), Messaging.class);
         i.putExtra(FriendInfo.USERNAME, username);
         i.putExtra(MessageInfo.MESSAGETEXT, msg);	
-        
         // The PendingIntent to launch our activity if the user selects this notification
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
-                i, 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, i, 0);
 
         // Set the info for the views that show in the notification panel.
         // msg.length()>15 ? MSG : msg.substring(0, 15);
+        
         mBuilder.setContentIntent(contentIntent); 
         
         mBuilder.setContentText("New message from " + username + ": " + msg);
@@ -202,11 +202,13 @@ public class IMService extends Service implements IAppManager, IUpdateData {
     }
 	 
 
+	@Override
 	public String getUsername() {
 		return this.username;
 	}
 
 	
+	@Override
 	public String sendMessage(String  username, String  tousername, String message) throws UnsupportedEncodingException 
 	{			
 		String params = "username="+ URLEncoder.encode(this.username,"UTF-8") +
@@ -248,6 +250,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	 * it returns the "0" in string type
 	 * @throws UnsupportedEncodingException 
 	 * */
+	@Override
 	public String authenticateUser(String usernameText, String passwordText) throws UnsupportedEncodingException 
 	{
 		this.username = usernameText;
@@ -268,6 +271,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 			
 			timer.schedule(new TimerTask()
 			{			
+				@Override
 				public void run() 
 				{
 					try {					
@@ -302,6 +306,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		return result;		
 	}
 
+	@Override
 	public void messageReceived(String username, String message) 
 	{				
 		
@@ -310,7 +315,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		if ( msg != null)
 		{			
 			Intent i = new Intent(TAKE_MESSAGE);
-		
+			Log.i("LOG USerID ",msg.userid+" thisuser"+this.getUsername() );
 			i.putExtra(MessageInfo.USERID, msg.userid);			
 			i.putExtra(MessageInfo.MESSAGETEXT, msg.messagetext);			
 			sendBroadcast(i);
@@ -341,14 +346,17 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	{		
 	}
 
+	@Override
 	public boolean isNetworkConnected() {
 		return conManager.getActiveNetworkInfo().isConnected();
 	}
 	
+	@Override
 	public boolean isUserAuthenticated(){
 		return authenticatedUser;
 	}
 	
+	@Override
 	public String getLastRawFriendList() {		
 		return this.rawFriendList;
 	}
@@ -359,6 +367,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		super.onDestroy();
 	}
 	
+	@Override
 	public void exit() 
 	{
 		timer.cancel();
@@ -367,6 +376,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		this.stopSelf();
 	}
 	
+	@Override
 	public String signUpUser(String usernameText, String passwordText,
 			String emailText, String spolText, String latitude, String longitude) 
 	{
@@ -384,6 +394,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		return result;
 	}
 
+	@Override
 	public String addNewFriendRequest(String friendUsername) 
 	{
 		String params = "username=" + this.username +
@@ -427,6 +438,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 
 
 
+	@Override
 	public String sendFriendsReqsResponse(String approvedFriendNames,
 			String discardedFriendNames) 
 	{
@@ -478,6 +490,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 		}	
 	}
 
+	@Override
 	public void updateData(MessageInfo[] messages,FriendInfo[] friends,
 			FriendInfo[] unApprovedFriends, String userKey) 
 	{

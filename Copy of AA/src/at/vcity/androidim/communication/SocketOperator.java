@@ -20,7 +20,7 @@ import at.vcity.androidim.interfaces.ISocketOperator;
 
 public class SocketOperator implements ISocketOperator
 {
-	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://93.103.147.28/android_im/"; //TODO change to your WebAPI Address
+	private static final String AUTHENTICATION_SERVER_ADDRESS = "http://193.77.83.41/android/"; //TODO change to your WebAPI Address
 	
 	private int listeningPort = 0;
 	

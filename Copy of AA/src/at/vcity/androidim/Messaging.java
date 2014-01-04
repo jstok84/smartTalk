@@ -18,6 +18,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -49,10 +50,12 @@ public class Messaging extends Activity {
       
 		
 		
+		@Override
 		public void onServiceConnected(ComponentName className, IBinder service) {          
             imService = ((IMService.IMBinder)service).getService();
         }
-        public void onServiceDisconnected(ComponentName className) {
+        @Override
+		public void onServiceDisconnected(ComponentName className) {
         	imService = null;
             Toast.makeText(Messaging.this, R.string.local_service_stopped,
                     Toast.LENGTH_SHORT).show();
@@ -75,15 +78,15 @@ public class Messaging extends Activity {
 		
 		sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
 		
-		Bundle extras = this.getIntent().getExtras();
-		
-		
+		Bundle extras = getIntent().getExtras();	
+		 Bundle params = getIntent().getExtras();
+
 		friend.userName = extras.getString(FriendInfo.USERNAME);
 		friend.ip = extras.getString(FriendInfo.IP);
 		friend.port = extras.getString(FriendInfo.PORT);
 		String msg = extras.getString(MessageInfo.MESSAGETEXT);
-		 
-		
+		//System.out.println("lkjhgfd biba "+friend.userName+" biba "+bib);
+    	Log.i("MESSAGING lOG", "uporabnik "+friend.userName+" "+msg+"");
 		
 		setTitle("Messaging with " + friend.userName);
 	
@@ -110,13 +113,14 @@ public class Messaging extends Activity {
 		
 		if (msg != null) 
 		{
-			this.appendToMessageHistory(friend.userName , msg);
+			//this.appendToMessageHistory(friend.userName , msg);
 			((NotificationManager)getSystemService(NOTIFICATION_SERVICE)).cancel((friend.userName+msg).hashCode());
 		}
 		
 		sendMessageButton.setOnClickListener(new OnClickListener(){
 			CharSequence message;
 			Handler handler = new Handler();
+			@Override
 			public void onClick(View arg0) {
 				message = messageText.getText();
 				if (message.length()>0) 
@@ -127,6 +131,7 @@ public class Messaging extends Activity {
 								
 					messageText.setText("");
 					Thread thread = new Thread(){					
+						@Override
 						public void run() {
 							try {
 								if (imService.sendMessage(imService.getUsername(), friend.userName, message.toString()) == null)
@@ -134,6 +139,7 @@ public class Messaging extends Activity {
 									
 									handler.post(new Runnable(){	
 
+										@Override
 										public void run() {
 											
 									        Toast.makeText(getApplicationContext(),R.string.message_cannot_be_sent, Toast.LENGTH_LONG).show();
@@ -158,6 +164,7 @@ public class Messaging extends Activity {
 			}});
 		
 		messageText.setOnKeyListener(new OnKeyListener(){
+			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event) 
 			{
 				if (keyCode == 66){
@@ -191,6 +198,7 @@ public class Messaging extends Activity {
 			return new AlertDialog.Builder(Messaging.this)       
 			.setMessage(message)
 			.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+				@Override
 				public void onClick(DialogInterface dialog, int whichButton) {
 					/* User clicked OK so do some stuff */
 				}
@@ -230,7 +238,8 @@ public class Messaging extends Activity {
 
 		@Override
 		public void onReceive(Context context, Intent intent) 
-		{		
+		{	
+
 			Bundle extra = intent.getExtras();
 			String username = extra.getString(MessageInfo.USERID);			
 			String message = extra.getString(MessageInfo.MESSAGETEXT);
