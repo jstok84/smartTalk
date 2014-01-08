@@ -199,9 +199,9 @@ public class FriendList extends ListActivity
 					tmp = tmp.concat(unApprovedFriends[j].userName).concat(",");			
 				}
 				NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-		    	.setSmallIcon(R.drawable.stat_sample)
+		    	.setSmallIcon(R.drawable.message)
 		    	.setContentTitle(getText(R.string.new_friend_request_exist));
-				Notification notification = new Notification(R.drawable.stat_sample, 
+				Notification notification = new Notification(R.drawable.message, 
 						getText(R.string.new_friend_request_exist),
 						System.currentTimeMillis());
 

@@ -74,7 +74,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	public static final String FRIEND_LIST_UPDATED = "Take Friend List";
 	public static final String MESSAGE_LIST_UPDATED = "Take Message List";
 	public ConnectivityManager conManager = null; 
-	private final int UPDATE_TIME_PERIOD = 15000;
+	private final int UPDATE_TIME_PERIOD = 4000;
 //	private static final INT LISTENING_PORT_NO = 8956;
 	private String rawFriendList = new String();
 	private String rawMessageList = new String();
@@ -167,16 +167,17 @@ public class IMService extends Service implements IAppManager, IUpdateData {
     private void showNotification(String username, String msg) 
 	{       
         // Set the icon, scrolling text and TIMESTAMP
-    	String title = "SmartTalk: You got a new Message! (" + username + ")";
+    	String title = "SmartTalk: Imate novo sporoèilo! (" + username + ")";
  				
     	String text = username + ": " + 
      				((msg.length() < 5) ? msg : msg.substring(0, 5)+ "...");
-    	Log.i("NOTIFICATION lOG", username+"user "+msg+" message");
+    	Log.i("NOTIFICATION lOG", username+"up. "+msg+" sporoèilo");
     	//NotificationCompat.Builder notification = new NotificationCompat.Builder(R.drawable.stat_sample, title,System.currentTimeMillis());
     	NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
-    	.setSmallIcon(R.drawable.stat_sample)
+    	.setSmallIcon(R.drawable.message)
     	.setContentTitle(title)
     	.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+    	
     	.setContentText(text); 
     	
 
@@ -184,14 +185,14 @@ public class IMService extends Service implements IAppManager, IUpdateData {
         i.putExtra(FriendInfo.USERNAME, username);
         i.putExtra(MessageInfo.MESSAGETEXT, msg);	
         // The PendingIntent to launch our activity if the user selects this notification
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, i, 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // Set the info for the views that show in the notification panel.
         // msg.length()>15 ? MSG : msg.substring(0, 15);
         
         mBuilder.setContentIntent(contentIntent); 
         
-        mBuilder.setContentText("New message from " + username + ": " + msg);
+        mBuilder.setContentText("Novo sporoèilo od " + username + ": " + msg);
         
         //TODO: it can be improved, for instance message coming from same user may be concatenated 
         // next version

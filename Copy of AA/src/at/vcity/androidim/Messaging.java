@@ -3,6 +3,8 @@ package at.vcity.androidim;
 
 import java.io.UnsupportedEncodingException;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -18,8 +20,11 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
@@ -88,7 +93,7 @@ public class Messaging extends Activity {
 		//System.out.println("lkjhgfd biba "+friend.userName+" biba "+bib);
     	Log.i("MESSAGING lOG", "uporabnik "+friend.userName+" "+msg+"");
 		
-		setTitle("Messaging with " + friend.userName);
+		setTitle("Pogovor z osebo " + friend.userName);
 	
 		
 	//	EditText friendUserName = (EditText) findViewById(R.id.friendUserName);
@@ -284,5 +289,24 @@ public class Messaging extends Activity {
 	    }
 	}
 	
-
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_message, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item){
+		
+		switch(item.getItemId()){
+			
+			case R.id.izhod:
+				//Intent i = new Intent(Messaging.this, MapActivity.class);																	
+				//startActivity(i);	
+				//Messaging.this.finish();
+				return true;
+		
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
