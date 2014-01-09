@@ -74,7 +74,7 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	public static final String FRIEND_LIST_UPDATED = "Take Friend List";
 	public static final String MESSAGE_LIST_UPDATED = "Take Message List";
 	public ConnectivityManager conManager = null; 
-	private final int UPDATE_TIME_PERIOD = 4000;
+	private final int UPDATE_TIME_PERIOD = 1000;
 //	private static final INT LISTENING_PORT_NO = 8956;
 	private String rawFriendList = new String();
 	private String rawMessageList = new String();

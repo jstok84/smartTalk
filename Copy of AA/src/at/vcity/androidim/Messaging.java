@@ -253,14 +253,14 @@ public class Messaging extends Activity {
 			{
 				if (friend.userName.equals(username)) {
 					appendToMessageHistory(username, message);
-					localstoragehandler.insert(username,imService.getUsername(), message);
+					localstoragehandler.insert(username,imService.getUsername(), message );
 					
 				}
 				else {
 					if (message.length() > 15) {
 						message = message.substring(0, 15);
 					}
-					Toast.makeText(Messaging.this,  username + " says '"+
+					Toast.makeText(Messaging.this,  username + " je rekel '"+
 													message + "'",
 													Toast.LENGTH_SHORT).show();		
 				}
@@ -272,8 +272,13 @@ public class Messaging extends Activity {
 	
 	public  void appendToMessageHistory(String username, String message) {
 		if (username != null && message != null) {
-			messageHistoryText.append(username + ":\n");								
-			messageHistoryText.append(message + "\n");
+			if(friend.userName.equals(username)){
+				messageHistoryText.append("*"+username + "*:\n");								
+				messageHistoryText.append(message + "\n\n");
+			}else{
+				messageHistoryText.append(username + ":\n");								
+				messageHistoryText.append(message + "\n\n");
+			}
 		}
 	}
 	

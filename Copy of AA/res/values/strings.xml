@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="friend_list">Friend List</string>
+    <string name="friend_list">Prijateljev List</string>
     <string name="username">Up. ime:</string>
     <string name="password">Geslo:</string>
     <string name="login">Prijava</string>
