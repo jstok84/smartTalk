@@ -386,7 +386,8 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 						"&action=" + "signUpUser"+
 						"&email=" + emailText+
 						"&spol=" + spolText +
-					
+						"&GPSx=" + 46.55886+
+						"&GPSy=" + -105.746155 +
 						"&";
 		
 		String result = socketOperator.sendHttpRequest(params);		
