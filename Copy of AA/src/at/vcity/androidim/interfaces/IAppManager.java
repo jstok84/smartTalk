@@ -14,7 +14,7 @@ public interface IAppManager {
 	public boolean isUserAuthenticated();
 	public String getLastRawFriendList();
 	public void exit();
-	public String signUpUser(String usernameText, String passwordText, String email, String spol, String latitude, String longitude);
+	public String signUpUser(String usernameText, String passwordText, String email, String spol);
 	public String setLongLat(String usernameText, String passwordText, String latitude, String longitude);
 	public String SelectAllUsers(String usernameText, String passwordText);
 	public String addNewFriendRequest(String friendUsername);

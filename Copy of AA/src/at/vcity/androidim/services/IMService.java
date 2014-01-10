@@ -379,15 +379,14 @@ public class IMService extends Service implements IAppManager, IUpdateData {
 	
 	@Override
 	public String signUpUser(String usernameText, String passwordText,
-			String emailText, String spolText, String latitude, String longitude) 
+			String emailText, String spolText) 
 	{
 		String params = "username=" + usernameText +
 						"&password=" + passwordText +
 						"&action=" + "signUpUser"+
 						"&email=" + emailText+
 						"&spol=" + spolText +
-						"&GPSx=" + latitude+
-						"&GPSy=" + longitude +
+					
 						"&";
 		
 		String result = socketOperator.sendHttpRequest(params);		

@@ -79,28 +79,32 @@
         android:layout_marginBottom="10dip"
         android:text="@string/spol"
     />
-    
-    <EditText android:id="@+id/spol"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:singleLine="true"
-        android:password="false"
-    /> 
-    
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moški" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ženski" />
     
     <LinearLayout android:orientation="horizontal"
     			  android:layout_width="fill_parent"
     			  android:layout_height="wrap_content"
     			  android:layout_marginTop="20dp"
-    			  android:layout_marginLeft="50dp">
+    			  android:layout_gravity="center_vertical|center_horizontal"
+    			  >
     			  
-			  
-    <Button android:id="@+id/signUp"
+    <Button
+        android:id="@+id/signUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-    />
+        android:text="@string/sign_up" />
+
     <Button android:id="@+id/cancel_signUp"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"

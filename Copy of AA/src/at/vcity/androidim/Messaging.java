@@ -30,6 +30,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import at.vcity.androidim.interfaces.IAppManager;
 import at.vcity.androidim.services.IMService;
@@ -80,6 +81,8 @@ public class Messaging extends Activity {
 		messageText = (EditText) findViewById(R.id.message);
 		
 		messageText.requestFocus();			
+		focusOnButtons();
+		
 		
 		sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
 		
@@ -300,6 +303,15 @@ public class Messaging extends Activity {
 		getMenuInflater().inflate(R.menu.activity_message, menu);
 		return true;
 	}
+	private final void focusOnButtons(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ScrollView sv = (ScrollView)findViewById(R.id.ScrollView01);
+                sv.scrollTo(0, sv.getBottom());
+            }
+        },1000);
+    }
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		
