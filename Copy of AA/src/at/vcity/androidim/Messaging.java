@@ -320,10 +320,31 @@ public class Messaging extends Activity {
 			case R.id.izhod:
 				//Intent i = new Intent(Messaging.this, MapActivity.class);																	
 				//startActivity(i);	
-				//Messaging.this.finish();
+				IzhodSporocilo();
 				return true;
 		
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	public void IzhodSporocilo() {
+		// TODO Auto-generated method stub
+    	AlertDialog.Builder sporociloGPS=new AlertDialog.Builder(this);
+    	sporociloGPS.setMessage("Ali res želite zapreti pogovor?")
+    	.setCancelable(false)
+    	.setPositiveButton("DA", new DialogInterface.OnClickListener() {
+	
+    		public void onClick(@SuppressWarnings("unused") final DialogInterface dialog,@SuppressWarnings("unused") final int id) {
+    			finish();
+			}
+		})
+		.setNegativeButton("NE", new DialogInterface.OnClickListener() {
+
+			public void onClick(final DialogInterface dialog, @SuppressWarnings("unused")final int id) {
+				// TODO Auto-generated method stub
+				dialog.cancel();
+			}
+		});;
+        final AlertDialog alert = sporociloGPS.create();
+        alert.show();
+    }
 }
